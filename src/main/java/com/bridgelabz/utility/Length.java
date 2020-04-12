@@ -1,7 +1,5 @@
 package com.bridgelabz.utility;
 
-import java.util.Objects;
-
 public class Length {
     public enum Unit {
         FEET(12), INCH(1);
