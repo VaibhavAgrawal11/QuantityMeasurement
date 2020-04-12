@@ -64,4 +64,47 @@ public class TestQuantityMeasurement {
         Length length2 = new Length(12, Length.Unit.FEET);
         Assert.assertEquals(length2.quantity, length1.quantity,0);
     }
+
+    @Test
+    public void givenZeroInchAndZeroInch_ShouldReturnEqual() {
+        Length length1 = new Length(0, Length.Unit.INCH);
+        Length length2 = new Length(0, Length.Unit.INCH);
+        boolean comparision = quantityMeasurement.compareLengths(length1, length2);
+        Assert.assertTrue(comparision);
+    }
+
+    @Test
+    public void givenNullInch_ShouldReturnFalse() {
+        Length length1 = new Length(0, Length.Unit.INCH);
+        boolean comparision = quantityMeasurement.compareLengths(length1, null);
+        Assert.assertEquals(false, comparision);
+    }
+
+    @Test
+    public void givenSameReferenceToInchLength_ShouldReturnTrue() {
+        Length length =new Length(10, Length.Unit.INCH);
+        boolean compare = quantityMeasurement.compareLengths(length,length);
+        Assert.assertEquals(true,compare);
+    }
+
+    @Test
+    public void givenInchOfSameType_ShouldReturnTrue() {
+        Length length1 = new Length(1, Length.Unit.INCH);
+        Length length2 = new Length(12, Length.Unit.INCH);
+        Assert.assertEquals(length1.unit, length2.unit);
+    }
+
+    @Test
+    public void givenLengthOfDifferentType_ShouldReturnFalse_2() {
+        Length length1 = new Length(1, Length.Unit.FEET);
+        Length length2 = new Length(12, Length.Unit.INCH);
+        Assert.assertNotEquals(length1.unit, length2.unit);
+    }
+
+    @Test
+    public void givenEqualValuesOfInch_ShouldReturnTrue() {
+        Length length1 = new Length(12, Length.Unit.INCH);
+        Length length2 = new Length(12, Length.Unit.INCH);
+        Assert.assertEquals(length2.quantity, length1.quantity,0);
+    }
 }
