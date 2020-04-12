@@ -131,4 +131,12 @@ public class TestQuantityMeasurement {
         boolean comparision = quantityMeasurement.compareLengths(length1, length2);
         Assert.assertFalse(comparision);
     }
+
+    @Test
+    public void givenLengthsInInchAndYard_WhenNotEqual_ShouldReturnFalse() {
+        Length length1 = new Length(1, Length.Unit.INCH);
+        Length length2 = new Length(1, Length.Unit.YARD);
+        boolean comparision = quantityMeasurement.compareLengths(length1, length2);
+        Assert.assertFalse(comparision);
+    }
 }
