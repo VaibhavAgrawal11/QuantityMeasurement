@@ -115,4 +115,12 @@ public class TestQuantityMeasurement {
         boolean compare = quantityMeasurement.compareLengths(length1,length2);
         Assert.assertTrue(compare);
     }
+
+    @Test
+    public void givenLengthsInFeetAndYard_WhenEqual_ShouldReturnTrue() {
+        Length length1 = new Length(3, Length.Unit.FEET);
+        Length length2 = new Length(1, Length.Unit.YARD);
+        boolean comparision = quantityMeasurement.compareLengths(length1, length2);
+        Assert.assertEquals(true, comparision);
+    }
 }

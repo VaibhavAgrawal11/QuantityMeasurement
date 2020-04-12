@@ -2,7 +2,7 @@ package com.bridgelabz.utility;
 
 public class Length {
     public enum Unit {
-        FEET(12), INCH(1);
+        FEET(12), INCH(1),YARD(36);
         double baseValue;
 
         Unit(double baseValue) {
