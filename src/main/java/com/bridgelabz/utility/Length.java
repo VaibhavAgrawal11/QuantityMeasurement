@@ -14,10 +14,12 @@ public class Length {
         }
     }
 
-    private double quantity;
+    public double quantity;
+    public Unit unit;
 
     public Length(double quantity, Unit unit) {
         this.quantity = unit.compare(quantity);
+        this.unit = unit;
     }
 
     @Override
