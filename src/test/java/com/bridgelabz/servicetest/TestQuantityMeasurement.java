@@ -107,4 +107,12 @@ public class TestQuantityMeasurement {
         Length length2 = new Length(12, Length.Unit.INCH);
         Assert.assertEquals(length2.quantity, length1.quantity,0);
     }
+
+    @Test
+    public void givenZeroInchAndZeroFeet_ShouldReturnTrue() {
+        Length length1 = new Length(0, Length.Unit.FEET);
+        Length length2 = new Length(0, Length.Unit.INCH);
+        boolean compare = quantityMeasurement.compareLengths(length1,length2);
+        Assert.assertTrue(compare);
+    }
 }
