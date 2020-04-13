@@ -204,4 +204,20 @@ public class TestQuantityMeasurement {
         boolean comparision = quantityMeasurement.compareLengths(length2, length1);
         Assert.assertTrue(comparision);
     }
+
+    @Test
+    public void givenCentimetreAndYard_WhenNotEqual_ShouldReturnFalse() {
+        Length length1 = new Length(0, Length.Unit.YARD);
+        Length length2 = new Length(5, Length.Unit.CENTIMETRE);
+        boolean comparision = quantityMeasurement.compareLengths(length2, length1);
+        Assert.assertFalse(comparision);
+    }
+
+    @Test
+    public void givenCentimetreAndYard_WhenEqual_ShouldReturnTrue() {
+        Length length1 = new Length(1, Length.Unit.YARD);
+        Length length2 = new Length(90, Length.Unit.CENTIMETRE);
+        boolean comparision = quantityMeasurement.compareLengths(length2, length1);
+        Assert.assertTrue(comparision);
+    }
 }
