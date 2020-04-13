@@ -420,4 +420,20 @@ public class TestQuantityMeasurement {
         boolean compare = quantityMeasurement.compareUnits(weight1,weight2);
         Assert.assertTrue(compare);
     }
+
+    @Test
+    public void givenTwoWeight_WhenEqual_ShouldReturnTrue_2() throws QuantityMeasurementException {
+        Quantity weight1 = new Quantity(1000, Quantity.Unit.KILOGRAM);
+        Quantity weight2 = new Quantity(1, Quantity.Unit.TONNE);
+        boolean compare = quantityMeasurement.compareUnits(weight1,weight2);
+        Assert.assertTrue(compare);
+    }
+
+    @Test
+    public void givenTwoWeight_WhenEqual_ShouldReturnTrue_3() throws QuantityMeasurementException {
+        Quantity weight1 = new Quantity(1, Quantity.Unit.TONNE);
+        Quantity weight2 = new Quantity(1000000, Quantity.Unit.GRAM);
+        boolean compare = quantityMeasurement.compareUnits(weight1,weight2);
+        Assert.assertTrue(compare);
+    }
 }
