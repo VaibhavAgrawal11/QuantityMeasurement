@@ -172,4 +172,20 @@ public class TestQuantityMeasurement {
         boolean comparision = quantityMeasurement.compareLengths(length2, length1);
         Assert.assertTrue(comparision);
     }
+
+    @Test
+    public void givenCentimetreAndInch_WhenNotEqual_ShouldReturnFalse() {
+        Length length1 = new Length(0, Length.Unit.INCH);
+        Length length2 = new Length(5, Length.Unit.CENTIMETRE);
+        boolean comparision = quantityMeasurement.compareLengths(length2, length1);
+        Assert.assertFalse(comparision);
+    }
+
+    @Test
+    public void givenCentimetreAndInch_WhenEqual_ShouldReturnTrue_2() {
+        Length length1 = new Length(0, Length.Unit.INCH);
+        Length length2 = new Length(0, Length.Unit.CENTIMETRE);
+        boolean comparision = quantityMeasurement.compareLengths(length2, length1);
+        Assert.assertTrue(comparision);
+    }
 }
