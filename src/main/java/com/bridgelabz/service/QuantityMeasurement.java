@@ -15,9 +15,8 @@ public class QuantityMeasurement {
         }
     }
 
-    public Quantity addLengths(Quantity length1, Quantity length2) {
+    public double addLengths(Quantity length1, Quantity length2) {
         double totalLength = length1.quantity + length2.quantity;
-        Quantity lengthInInch = new Quantity(totalLength, Quantity.Unit.INCH);
-        return lengthInInch;
+        return totalLength;
     }
 }

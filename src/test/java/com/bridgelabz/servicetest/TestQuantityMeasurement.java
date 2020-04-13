@@ -37,7 +37,7 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.compareLengths(length1, null);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE, e.type);
         }
     }
 
@@ -84,7 +84,7 @@ public class TestQuantityMeasurement {
         try {
             comparision = quantityMeasurement.compareLengths(length1, null);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE, e.type);
         }
     }
 
@@ -232,32 +232,35 @@ public class TestQuantityMeasurement {
     public void givenInchAndInch_WhenAdded_ShouldReturnValueInInch() {
         Quantity length1 = new Quantity(1, Quantity.Unit.INCH);
         Quantity length2 = new Quantity(1, Quantity.Unit.INCH);
-        Quantity totalLength = quantityMeasurement.addLengths(length1, length2);
-        Assert.assertEquals(new Quantity(2, Quantity.Unit.INCH), totalLength);
+        double totalLength = quantityMeasurement.addLengths(length1, length2);
+        Assert.assertEquals(new Quantity(2, Quantity.Unit.INCH),
+                new Quantity(totalLength, Quantity.Unit.INCH));
     }
 
     @Test
     public void givenFeetAndInch_WhenAdded_ShouldReturnValueInInch() {
         Quantity length1 = new Quantity(1, Quantity.Unit.FEET);
         Quantity length2 = new Quantity(2, Quantity.Unit.INCH);
-        Quantity totalLength = quantityMeasurement.addLengths(length1, length2);
-        Assert.assertEquals(new Quantity(14, Quantity.Unit.INCH), totalLength);
+        double totalLength = quantityMeasurement.addLengths(length1, length2);
+        Assert.assertEquals(new Quantity(14, Quantity.Unit.INCH),
+                new Quantity(totalLength, Quantity.Unit.INCH));
     }
 
     @Test
     public void givenFeetAndFeet_WhenAdded_ShouldReturnValueInInch() {
         Quantity length1 = new Quantity(1, Quantity.Unit.FEET);
         Quantity length2 = new Quantity(1, Quantity.Unit.FEET);
-        Quantity totalLength = quantityMeasurement.addLengths(length1, length2);
-        Assert.assertEquals(new Quantity(24, Quantity.Unit.INCH), totalLength);
+        double totalLength = quantityMeasurement.addLengths(length1, length2);
+        Assert.assertEquals(new Quantity(24, Quantity.Unit.INCH),
+                new Quantity(totalLength, Quantity.Unit.INCH));
     }
 
     @Test
     public void givenCentimeterAndInch_WhenAdded_ShouldReturnValueInInch() {
         Quantity length1 = new Quantity(2.5, Quantity.Unit.CENTIMETRE);
         Quantity length2 = new Quantity(2, Quantity.Unit.INCH);
-        Quantity totalLength = quantityMeasurement.addLengths(length1, length2);
-        Assert.assertEquals(new Quantity(3, Quantity.Unit.INCH), totalLength);
+        double totalLength = quantityMeasurement.addLengths(length1, length2);
+        Assert.assertEquals(3,totalLength,0);
     }
 
     @Test
@@ -337,9 +340,18 @@ public class TestQuantityMeasurement {
         Quantity length = new Quantity(1, Quantity.Unit.INCH);
         Quantity volume = new Quantity(1, Quantity.Unit.LITRE);
         try {
-            quantityMeasurement.compareLengths(length,volume);
+            quantityMeasurement.compareLengths(length, volume);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch, e.type);
         }
+    }
+
+    @Test
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
+        Quantity volume2 = new Quantity(3.78, Quantity.Unit.LITRE);
+        double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
+        Assert.assertEquals(new Quantity(7.56, Quantity.Unit.LITRE),
+                new Quantity(totalVolume, Quantity.Unit.LITRE));
     }
 }
