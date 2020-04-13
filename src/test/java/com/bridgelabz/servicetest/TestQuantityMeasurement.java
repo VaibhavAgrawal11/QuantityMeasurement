@@ -354,4 +354,31 @@ public class TestQuantityMeasurement {
         Assert.assertEquals(new Quantity(7.56, Quantity.Unit.LITRE),
                 new Quantity(totalVolume, Quantity.Unit.LITRE));
     }
+
+    @Test
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_2() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
+        Quantity volume2 = new Quantity(1, Quantity.Unit.LITRE);
+        double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
+        Assert.assertEquals(new Quantity(2, Quantity.Unit.LITRE),
+                new Quantity(totalVolume, Quantity.Unit.LITRE));
+    }
+
+    @Test
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_3() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
+        Quantity volume2 = new Quantity(3.78, Quantity.Unit.MILLILITRE);
+        double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
+        Assert.assertEquals(new Quantity(3.7837799999999997, Quantity.Unit.LITRE),
+                new Quantity(totalVolume, Quantity.Unit.LITRE));
+    }
+
+    @Test
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_4() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
+        Quantity volume2 = new Quantity(3.78, Quantity.Unit.MILLILITRE);
+        double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
+        Assert.assertEquals(new Quantity(1.00378, Quantity.Unit.LITRE),
+                new Quantity(totalVolume, Quantity.Unit.LITRE));
+    }
 }
