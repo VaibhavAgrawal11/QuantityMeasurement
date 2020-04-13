@@ -342,7 +342,7 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.compareLengths(length, volume);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch, e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
         }
     }
 
@@ -389,7 +389,7 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.addLengths(volume, length);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
         }
     }
 
@@ -400,7 +400,16 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.addLengths(volume, length);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+        }
+    }
+    @Test
+    public void givenVolumeAndNull_WhenAdded_ShouldThrowException() {
+        Quantity volume = new Quantity(1, Quantity.Unit.LITRE);
+        try {
+            quantityMeasurement.addLengths(volume, null);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE,e.type);
         }
     }
 }
