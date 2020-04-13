@@ -1,28 +1,11 @@
 package com.bridgelabz.utility;
 
-import com.bridgelabz.exception.QuantityMeasurementException;
-import com.bridgelabz.service.QuantityMeasurement;
+import com.bridgelabz.adaptor.IUnitAdaptor;
+import com.bridgelabz.adaptor.UnitAdaptorFactory;
 
 public class Quantity {
     public enum Unit {
-        FEET(12, UnitType.LENGTH),
-        INCH(1, UnitType.LENGTH),
-        YARD(36, UnitType.LENGTH),
-        CENTIMETRE(0.4, UnitType.LENGTH),
-        GALLON(3.78, UnitType.VOLUME),
-        LITRE(1, UnitType.VOLUME),
-        MILLILITRE(0.001, UnitType.VOLUME);
-        double baseValue;
-        UnitType unitType;
-
-        Unit(double baseValue, UnitType unitType) {
-            this.baseValue = baseValue;
-            this.unitType = unitType;
-        }
-
-        public double compare(double quantity) {
-            return this.baseValue * quantity;
-        }
+        FEET, INCH, YARD, CENTIMETRE, GALLON, LITRE, MILLILITRE;
     }
 
     public double quantity;
@@ -30,9 +13,10 @@ public class Quantity {
     public UnitType unitType;
 
     public Quantity(double quantity, Unit unit) {
-        this.quantity = unit.compare(quantity);
+        IUnitAdaptor unitAdaptor = UnitAdaptorFactory.getObject(unit);
+        this.quantity = unitAdaptor.compare(quantity);
         this.unit = unit;
-        this.unitType = unit.unitType;
+        this.unitType = unitAdaptor.getUnitType();
     }
 
     @Override
