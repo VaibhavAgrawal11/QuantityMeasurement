@@ -244,4 +244,12 @@ public class TestQuantityMeasurement {
         Length totalLength = quantityMeasurement.addLengths(length1,length2);
         Assert.assertEquals(new Length(24, Length.Unit.INCH),totalLength);
     }
+
+    @Test
+    public void givenCentimeterAndInch_WhenAdded_ShouldReturnValueInInch() {
+        Length length1 = new Length(2.5, Length.Unit.CENTIMETRE);
+        Length length2 = new Length(2, Length.Unit.INCH);
+        Length totalLength = quantityMeasurement.addLengths(length1,length2);
+        Assert.assertEquals(new Length(3, Length.Unit.INCH),totalLength);
+    }
 }
