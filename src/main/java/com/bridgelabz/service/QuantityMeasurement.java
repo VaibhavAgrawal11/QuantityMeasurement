@@ -4,7 +4,7 @@ import com.bridgelabz.exception.QuantityMeasurementException;
 import com.bridgelabz.utility.Quantity;
 
 public class QuantityMeasurement {
-    public boolean compareLengths(Quantity length1, Quantity length2) throws QuantityMeasurementException {
+    public boolean compareUnits(Quantity length1, Quantity length2) throws QuantityMeasurementException {
         try {
             if (length1.unitType != length2.unitType)
                 throw new QuantityMeasurementException("Incomparable type",

@@ -5,7 +5,7 @@ import com.bridgelabz.adaptor.UnitAdaptorFactory;
 
 public class Quantity {
     public enum Unit {
-        FEET, INCH, YARD, CENTIMETRE, GALLON, LITRE, MILLILITRE;
+        FEET, INCH, YARD, CENTIMETRE, GALLON, LITRE, MILLILITRE, TONNE, KILOGRAM, GRAM;
     }
 
     public double quantity;

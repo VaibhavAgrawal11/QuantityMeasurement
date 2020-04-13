@@ -1,5 +1,5 @@
 package com.bridgelabz.utility;
 
 public enum UnitType {
-    LENGTH,VOLUME
+    LENGTH, VOLUME, WEIGHT
 }
