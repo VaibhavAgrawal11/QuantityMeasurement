@@ -229,7 +229,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenInchAndInch_WhenAdded_ShouldReturnValueInInch() {
+    public void givenInchAndInch_WhenAdded_ShouldReturnValueInInch() throws QuantityMeasurementException {
         Quantity length1 = new Quantity(1, Quantity.Unit.INCH);
         Quantity length2 = new Quantity(1, Quantity.Unit.INCH);
         double totalLength = quantityMeasurement.addLengths(length1, length2);
@@ -238,7 +238,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenFeetAndInch_WhenAdded_ShouldReturnValueInInch() {
+    public void givenFeetAndInch_WhenAdded_ShouldReturnValueInInch() throws QuantityMeasurementException {
         Quantity length1 = new Quantity(1, Quantity.Unit.FEET);
         Quantity length2 = new Quantity(2, Quantity.Unit.INCH);
         double totalLength = quantityMeasurement.addLengths(length1, length2);
@@ -247,7 +247,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenFeetAndFeet_WhenAdded_ShouldReturnValueInInch() {
+    public void givenFeetAndFeet_WhenAdded_ShouldReturnValueInInch() throws QuantityMeasurementException {
         Quantity length1 = new Quantity(1, Quantity.Unit.FEET);
         Quantity length2 = new Quantity(1, Quantity.Unit.FEET);
         double totalLength = quantityMeasurement.addLengths(length1, length2);
@@ -256,11 +256,11 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenCentimeterAndInch_WhenAdded_ShouldReturnValueInInch() {
+    public void givenCentimeterAndInch_WhenAdded_ShouldReturnValueInInch() throws QuantityMeasurementException {
         Quantity length1 = new Quantity(2.5, Quantity.Unit.CENTIMETRE);
         Quantity length2 = new Quantity(2, Quantity.Unit.INCH);
         double totalLength = quantityMeasurement.addLengths(length1, length2);
-        Assert.assertEquals(3,totalLength,0);
+        Assert.assertEquals(3, totalLength, 0);
     }
 
     @Test
@@ -347,7 +347,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre() {
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre() throws QuantityMeasurementException {
         Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
         Quantity volume2 = new Quantity(3.78, Quantity.Unit.LITRE);
         double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
@@ -356,7 +356,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_2() {
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_2() throws QuantityMeasurementException {
         Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
         Quantity volume2 = new Quantity(1, Quantity.Unit.LITRE);
         double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
@@ -365,7 +365,7 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_3() {
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_3() throws QuantityMeasurementException {
         Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
         Quantity volume2 = new Quantity(3.78, Quantity.Unit.MILLILITRE);
         double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
@@ -374,11 +374,33 @@ public class TestQuantityMeasurement {
     }
 
     @Test
-    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_4() {
+    public void givenTwoVolume_WhenAdded_ShouldReturnVolumeInLitre_4() throws QuantityMeasurementException {
         Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
         Quantity volume2 = new Quantity(3.78, Quantity.Unit.MILLILITRE);
         double totalVolume = quantityMeasurement.addLengths(volume1, volume2);
         Assert.assertEquals(new Quantity(1.00378, Quantity.Unit.LITRE),
                 new Quantity(totalVolume, Quantity.Unit.LITRE));
+    }
+
+    @Test
+    public void givenVolumeAndLength_WhenAdded_ShouldThrowException() {
+        Quantity volume = new Quantity(1, Quantity.Unit.LITRE);
+        Quantity length = new Quantity(1, Quantity.Unit.FEET);
+        try {
+            quantityMeasurement.addLengths(volume, length);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch,e.type);
+        }
+    }
+
+    @Test
+    public void givenVolumeAndLength_WhenAdded_ShouldThrowException_2() {
+        Quantity volume = new Quantity(1, Quantity.Unit.GALLON);
+        Quantity length = new Quantity(1, Quantity.Unit.CENTIMETRE);
+        try {
+            quantityMeasurement.addLengths(volume, length);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UnitType_Mismatch,e.type);
+        }
     }
 }
