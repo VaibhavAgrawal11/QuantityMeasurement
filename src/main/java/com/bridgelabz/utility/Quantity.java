@@ -1,12 +1,19 @@
 package com.bridgelabz.utility;
 
-public class Length {
+public class Quantity {
     public enum Unit {
-        FEET(12), INCH(1),YARD(36),CENTIMETRE(0.4);
+        FEET(12, UnitType.LENGTH),
+        INCH(1, UnitType.LENGTH),
+        YARD(36, UnitType.LENGTH),
+        CENTIMETRE(0.4, UnitType.LENGTH),
+        GALLON(3.78, UnitType.VOLUME),
+        LITRE(1, UnitType.VOLUME);
         double baseValue;
+        UnitType unitType;
 
-        Unit(double baseValue) {
+        Unit(double baseValue, UnitType unitType) {
             this.baseValue = baseValue;
+            this.unitType = unitType;
         }
 
         public double compare(double quantity) {
@@ -16,17 +23,19 @@ public class Length {
 
     public double quantity;
     public Unit unit;
+    public UnitType unitType;
 
-    public Length(double quantity, Unit unit) {
+    public Quantity(double quantity, Unit unit) {
         this.quantity = unit.compare(quantity);
         this.unit = unit;
+        this.unitType = unit.unitType;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Length length = (Length) o;
+        Quantity length = (Quantity) o;
         return Double.compare(length.quantity, quantity) == 0;
     }
 }
