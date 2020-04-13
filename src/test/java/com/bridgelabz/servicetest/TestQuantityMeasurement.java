@@ -220,4 +220,12 @@ public class TestQuantityMeasurement {
         boolean comparision = quantityMeasurement.compareLengths(length2, length1);
         Assert.assertTrue(comparision);
     }
+
+    @Test
+    public void givenInchAndInch_WhenAdded_ShouldReturnValueInInch() {
+        Length length1 = new Length(1, Length.Unit.INCH);
+        Length length2 = new Length(1, Length.Unit.INCH);
+        Length totalLength = quantityMeasurement.addLengths(length1,length2);
+        Assert.assertEquals(new Length(2, Length.Unit.INCH),totalLength);
+    }
 }
