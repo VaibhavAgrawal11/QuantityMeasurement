@@ -7,7 +7,8 @@ public class Quantity {
         YARD(36, UnitType.LENGTH),
         CENTIMETRE(0.4, UnitType.LENGTH),
         GALLON(3.78, UnitType.VOLUME),
-        LITRE(1, UnitType.VOLUME);
+        LITRE(1, UnitType.VOLUME),
+        MILLILITRE(0.001, UnitType.VOLUME);
         double baseValue;
         UnitType unitType;
 

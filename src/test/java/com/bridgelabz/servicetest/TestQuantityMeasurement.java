@@ -260,4 +260,12 @@ public class TestQuantityMeasurement {
         boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
         Assert.assertEquals(true,compare);
     }
+
+    @Test
+    public void givenVolume_InLitreAndMillilitre_WhenEqual_ShoulReturnTrue() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
+        Quantity volume2 = new Quantity(1000, Quantity.Unit.MILLILITRE);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertEquals(true,compare);
+    }
 }
