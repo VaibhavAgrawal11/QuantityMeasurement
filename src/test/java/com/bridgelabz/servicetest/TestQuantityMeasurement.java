@@ -258,7 +258,7 @@ public class TestQuantityMeasurement {
         Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
         Quantity volume2 = new Quantity(3.78, Quantity.Unit.LITRE);
         boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
-        Assert.assertEquals(true,compare);
+        Assert.assertEquals(true, compare);
     }
 
     @Test
@@ -266,6 +266,62 @@ public class TestQuantityMeasurement {
         Quantity volume1 = new Quantity(1, Quantity.Unit.LITRE);
         Quantity volume2 = new Quantity(1000, Quantity.Unit.MILLILITRE);
         boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
-        Assert.assertEquals(true,compare);
+        Assert.assertEquals(true, compare);
+    }
+
+    @Test
+    public void givenVolume_InGallonAndGallon_WhenEqual_ShouldReturnTrue() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
+        Quantity volume2 = new Quantity(1, Quantity.Unit.GALLON);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertEquals(true, compare);
+    }
+
+    @Test
+    public void givenVolume_InGallonAndLitre_WhenNotEqual_ShouldReturnFalse() {
+        Quantity volume1 = new Quantity(1, Quantity.Unit.GALLON);
+        Quantity volume2 = new Quantity(3.7, Quantity.Unit.LITRE);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertFalse(compare);
+    }
+
+    @Test
+    public void givenVolume_InLitreAndLitre_WhenEqual_ShouldReturnTrue() {
+        Quantity volume1 = new Quantity(0, Quantity.Unit.LITRE);
+        Quantity volume2 = new Quantity(0, Quantity.Unit.LITRE);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertEquals(true, compare);
+    }
+
+    @Test
+    public void givenVolume_InMilliLitreAndLitre_WhenNotEqual_ShouldReturnFalse() {
+        Quantity volume1 = new Quantity(10, Quantity.Unit.MILLILITRE);
+        Quantity volume2 = new Quantity(3.7, Quantity.Unit.LITRE);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertFalse(compare);
+    }
+
+    @Test
+    public void givenVolume_InMLAndML_WhenEqual_ShouldReturnTrue() {
+        Quantity volume1 = new Quantity(0, Quantity.Unit.MILLILITRE);
+        Quantity volume2 = new Quantity(0, Quantity.Unit.MILLILITRE);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertEquals(true, compare);
+    }
+
+    @Test
+    public void givenVolume_InMilliLitreAndGallon_WhenNotEqual_ShouldReturnFalse() {
+        Quantity volume1 = new Quantity(10, Quantity.Unit.MILLILITRE);
+        Quantity volume2 = new Quantity(3.7, Quantity.Unit.GALLON);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertFalse(compare);
+    }
+
+    @Test
+    public void givenVolume_InMilliLitreAndGallon_WhenEqual_ShouldReturnTrue() {
+        Quantity volume1 = new Quantity(3780, Quantity.Unit.MILLILITRE);
+        Quantity volume2 = new Quantity(1, Quantity.Unit.GALLON);
+        boolean compare = quantityMeasurement.compareLengths(volume1, volume2);
+        Assert.assertFalse(compare);
     }
 }
