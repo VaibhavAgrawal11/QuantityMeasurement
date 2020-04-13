@@ -2,9 +2,7 @@ package com.bridgelabz.adaptor;
 
 import com.bridgelabz.adaptor.lengths.*;
 import com.bridgelabz.adaptor.volume.*;
-import com.bridgelabz.adaptor.weights.GramImpl;
-import com.bridgelabz.adaptor.weights.KilogramImpl;
-import com.bridgelabz.adaptor.weights.TonneImpl;
+import com.bridgelabz.adaptor.weights.*;
 import com.bridgelabz.utility.Quantity;
 
 public class UnitAdaptorFactory {
@@ -23,7 +21,7 @@ public class UnitAdaptorFactory {
             case CENTIMETRE:
                 return new CentimetreImpl();
             case MILLILITRE:
-                return new MilliLitre();
+                return new MilliLitreImpl();
             case GRAM:
                 return new GramImpl();
             case TONNE:

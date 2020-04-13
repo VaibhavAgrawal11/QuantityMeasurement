@@ -469,7 +469,7 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.compareUnits(weight, volume);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
         }
     }
 
@@ -480,7 +480,56 @@ public class TestQuantityMeasurement {
         try {
             quantityMeasurement.compareUnits(weight, litre);
         } catch (QuantityMeasurementException e) {
-            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
+        }
+    }
+
+    @Test
+    public void givenTwoWeight_WhenAdded_ShouldReturnWeightInKilogram() throws QuantityMeasurementException {
+        Quantity weight1 = new Quantity(1, Quantity.Unit.TONNE);
+        Quantity weight2 = new Quantity(1000, Quantity.Unit.GRAM);
+        double totalWeight = quantityMeasurement.addLengths(weight1, weight2);
+        Assert.assertEquals(new Quantity(1001, Quantity.Unit.KILOGRAM),
+                new Quantity(totalWeight, Quantity.Unit.KILOGRAM));
+    }
+
+    @Test
+    public void givenTwoWeight_WhenAdded_ShouldReturnWeightInKilogram_2() throws QuantityMeasurementException {
+        Quantity weight1 = new Quantity(1, Quantity.Unit.TONNE);
+        Quantity weight2 = new Quantity(1000, Quantity.Unit.KILOGRAM);
+        double totalWeight = quantityMeasurement.addLengths(weight1, weight2);
+        Assert.assertEquals(new Quantity(2000, Quantity.Unit.KILOGRAM),
+                new Quantity(totalWeight, Quantity.Unit.KILOGRAM));
+    }
+
+    @Test
+    public void givenTwoWeight_WhenAdded_ShouldReturnWeightInKilogram_3() throws QuantityMeasurementException {
+        Quantity weight1 = new Quantity(1, Quantity.Unit.KILOGRAM);
+        Quantity weight2 = new Quantity(1000, Quantity.Unit.GRAM);
+        double totalWeight = quantityMeasurement.addLengths(weight1, weight2);
+        Assert.assertEquals(new Quantity(2, Quantity.Unit.KILOGRAM),
+                new Quantity(totalWeight, Quantity.Unit.KILOGRAM));
+    }
+
+    @Test
+    public void givenWeightAndVolume_WhenAdded_ShouldThrowException() {
+        Quantity weight = new Quantity(1, Quantity.Unit.TONNE);
+        Quantity volume = new Quantity(1000, Quantity.Unit.LITRE);
+        try {
+            quantityMeasurement.addLengths(weight, volume);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
+        }
+    }
+
+    @Test
+    public void givenWeightAndLength_WhenAdded_ShouldThrowException() {
+        Quantity weight = new Quantity(1, Quantity.Unit.TONNE);
+        Quantity length = new Quantity(1000, Quantity.Unit.INCH);
+        try {
+            quantityMeasurement.addLengths(weight, length);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
         }
     }
 }
