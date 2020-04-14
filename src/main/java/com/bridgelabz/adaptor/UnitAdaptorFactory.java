@@ -1,6 +1,8 @@
 package com.bridgelabz.adaptor;
 
 import com.bridgelabz.adaptor.lengths.*;
+import com.bridgelabz.adaptor.temperature.CelsiusImpl;
+import com.bridgelabz.adaptor.temperature.FahrenheitImpl;
 import com.bridgelabz.adaptor.volume.*;
 import com.bridgelabz.adaptor.weights.*;
 import com.bridgelabz.utility.Quantity;
@@ -28,6 +30,10 @@ public class UnitAdaptorFactory {
                 return new TonneImpl();
             case KILOGRAM:
                 return new KilogramImpl();
+            case CELSIUS:
+                return new CelsiusImpl();
+            case FAHRENHEIT:
+                return new FahrenheitImpl();
             default:
                 return null;
         }

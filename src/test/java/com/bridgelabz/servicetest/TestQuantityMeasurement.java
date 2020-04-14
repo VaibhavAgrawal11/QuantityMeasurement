@@ -532,4 +532,78 @@ public class TestQuantityMeasurement {
             Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH, e.type);
         }
     }
+
+    @Test
+    public void givenTemperatures_WhenEqual_ShouldReturnTrue() throws QuantityMeasurementException {
+        Quantity temperature1 = new Quantity(100, Quantity.Unit.CELSIUS);
+        Quantity temperature2 = new Quantity(212, Quantity.Unit.FAHRENHEIT);
+        boolean compare = quantityMeasurement.compareUnits(temperature1, temperature2);
+        Assert.assertTrue(compare);
+    }
+
+    @Test
+    public void givenTemperatures_WhenEqual_ShouldReturnTrue_2() throws QuantityMeasurementException {
+        Quantity temperature1 = new Quantity(32, Quantity.Unit.FAHRENHEIT);
+        Quantity temperature2 = new Quantity(0, Quantity.Unit.CELSIUS);
+        boolean compare = quantityMeasurement.compareUnits(temperature1, temperature2);
+        Assert.assertTrue(compare);
+    }
+
+    @Test
+    public void givenTemperatures_WhenEqual_ShouldReturnTrue_3() throws QuantityMeasurementException {
+        Quantity temperature1 = new Quantity(100, Quantity.Unit.FAHRENHEIT);
+        Quantity temperature2 = new Quantity(100, Quantity.Unit.FAHRENHEIT);
+        boolean compare = quantityMeasurement.compareUnits(temperature1, temperature2);
+        Assert.assertTrue(compare);
+    }
+
+    @Test
+    public void givenTemperatures_WhenNotEqual_ShouldReturnFalse() throws QuantityMeasurementException {
+        Quantity temperature1 = new Quantity(100, Quantity.Unit.CELSIUS);
+        Quantity temperature2 = new Quantity(12, Quantity.Unit.FAHRENHEIT);
+        boolean compare = quantityMeasurement.compareUnits(temperature1, temperature2);
+        Assert.assertFalse(compare);
+    }
+
+    @Test
+    public void givenTemperatures_WhenNull_ShouldThrowException() {
+        Quantity temperature1 = new Quantity(100, Quantity.Unit.CELSIUS);
+        try {
+            quantityMeasurement.compareUnits(temperature1, null);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.NULL_VALUE,e.type);
+        }
+    }
+
+    @Test
+    public void givenTemperatureAndVolume_WhenCompared_ShouldThrowException() {
+        Quantity temperature = new Quantity(100, Quantity.Unit.CELSIUS);
+        Quantity volume = new Quantity(1, Quantity.Unit.LITRE);
+        try {
+            quantityMeasurement.compareUnits(temperature, volume);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+        }
+    }
+
+    @Test
+    public void givenTemperatureAndWeight_WhenCompared_ShouldThrowException() {
+        Quantity temperature = new Quantity(100, Quantity.Unit.CELSIUS);
+        Quantity weight = new Quantity(1, Quantity.Unit.KILOGRAM);
+        try {
+            quantityMeasurement.compareUnits(temperature, weight);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+        }
+    }
+    @Test
+    public void givenTemperatureAndLength_WhenCompared_ShouldThrowException() {
+        Quantity temperature = new Quantity(100, Quantity.Unit.CELSIUS);
+        Quantity length = new Quantity(1, Quantity.Unit.FEET);
+        try {
+            quantityMeasurement.compareUnits(temperature, length);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH,e.type);
+        }
+    }
 }
