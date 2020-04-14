@@ -4,24 +4,27 @@ import com.bridgelabz.exception.QuantityMeasurementException;
 import com.bridgelabz.utility.Quantity;
 
 public class QuantityMeasurement {
-    public boolean compareUnits(Quantity length1, Quantity length2) throws QuantityMeasurementException {
+
+    //METHOD TO EQUATE TWO QUANTITIES IF THEY ARE COMPARABLE
+    public boolean compareUnits(Quantity quantity1, Quantity quantity2) throws QuantityMeasurementException {
         try {
-            if (length1.unitType != length2.unitType)
+            if (quantity1.unitType != quantity2.unitType)
                 throw new QuantityMeasurementException("Incomparable type",
                         QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH);
-            return length1.equals(length2);
+            return quantity1.equals(quantity2);
         } catch (NullPointerException e) {
             throw new QuantityMeasurementException("Null value entered",
                     QuantityMeasurementException.ExceptionType.NULL_VALUE);
         }
     }
 
-    public double addLengths(Quantity length1, Quantity length2) throws QuantityMeasurementException {
+    //METHOD TO ADD TWO QUANTITIES IF THEY ARE ADDABLE
+    public double addLengths(Quantity quantity1, Quantity quantity2) throws QuantityMeasurementException {
         try {
-            if (length1.unitType != length2.unitType)
+            if (quantity1.unitType != quantity2.unitType)
                 throw new QuantityMeasurementException("Incomparable type",
                         QuantityMeasurementException.ExceptionType.UNIT_TYPE_MISMATCH);
-            return length1.quantity + length2.quantity;
+            return quantity1.quantity + quantity2.quantity;
         } catch (NullPointerException e) {
             throw new QuantityMeasurementException("Null value entered",
                     QuantityMeasurementException.ExceptionType.NULL_VALUE);

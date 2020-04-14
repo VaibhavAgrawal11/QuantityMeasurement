@@ -5,10 +5,7 @@ import com.bridgelabz.adaptor.UnitAdaptorFactory;
 
 public class Quantity {
     public enum Unit {
-        FEET, INCH, YARD, CENTIMETRE,
-        GALLON, LITRE, MILLILITRE,
-        TONNE, KILOGRAM, GRAM,
-        CELSIUS, FAHRENHEIT;
+        FEET, INCH, YARD, CENTIMETRE, GALLON, LITRE, MILLILITRE, TONNE, KILOGRAM, GRAM, CELSIUS, FAHRENHEIT;
     }
 
     public double quantity;
@@ -17,7 +14,7 @@ public class Quantity {
 
     public Quantity(double quantity, Unit unit) {
         IUnitAdaptor unitAdaptor = UnitAdaptorFactory.getObject(unit);
-        this.quantity = unitAdaptor.compare(quantity,unit);
+        this.quantity = unitAdaptor.compare(quantity, unit);
         this.unit = unit;
         this.unitType = unitAdaptor.getUnitType();
     }
